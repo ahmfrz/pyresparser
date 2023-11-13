@@ -15,8 +15,11 @@ class ResumeParser(object):
         self,
         resume,
         skills_file=None,
-        custom_regex=None
+        custom_regex=None,
+        spacy_path=None
     ):
+        if spacy_path is not None:
+            spacy.util.set_data_path(spacy_path)
         nlp = spacy.load('en_core_web_sm')
         custom_nlp = spacy.load(os.path.dirname(os.path.abspath(__file__)))
         self.__skills_file = skills_file
